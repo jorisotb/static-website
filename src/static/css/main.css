@@ -1,0 +1,106 @@
+html {
+    background-color: #181a20;
+    color: #ffffff;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 12pt;
+}
+
+body {
+    width: 800px;
+    margin: 8px auto;
+}
+
+a {
+    color: #ffffff;
+}
+
+a:hover {
+    color: darkgray;
+}
+
+a:active {
+    color: blue;
+}
+
+#header, #content, #sidebar, #footer {
+    float: left;
+    margin: 16px 0px 0px 0px;
+
+    background-color: #2c2e34;
+}
+
+#header {
+    width: 800px;
+}
+
+#profile {
+    float: left;
+    height: 60px;
+    padding: 10px;
+}
+
+#profile-img {
+    float: left;
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+}
+
+#profile-text {
+    float: left;
+    margin: 15px 0px 0px 8px;
+
+    font-size: 30px;
+}
+
+#menu {
+    float: left;
+    padding: 31px 0px 0px 0px;
+}
+
+#menu a {
+    margin: 3px;
+}
+
+#content {
+    float: left;
+    width: 564px;
+    max-height: 800px;
+    padding: 10px;
+
+    overflow: auto;
+}
+
+#sidebar {
+    float: right;
+    width: 180px;
+    padding: 10px;
+}
+
+#footer {
+    width: 780px;
+    padding: 10px;
+}
+
+#banners {
+    float: left;
+    width: 380px;
+}
+
+#links {
+    float: left;
+    width: 380px;
+
+    text-align: center;
+}
+
+.icon-link{
+    text-decoration: none;
+}
+
+#links img {
+    width: 32px;
+    height: 32px;
+    margin: 8px 0px 0px 2px;
+}
