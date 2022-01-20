@@ -1,7 +1,8 @@
-import os
 import sys
-import time
+import os
+
 from shutil import copyfile
+from time import time
 
 if len(sys.argv) > 1:
     src_dir = sys.argv[1]+'/'
@@ -18,7 +19,7 @@ def filepath(path, filename, target):
         return src_dir+path.split(src_dir)[1]+'/'+filename
 
 if __name__ == "__main__":
-    start_time = time.time()
+    start_time = time()
     print('running include_htm with\n      source = ' + src_dir + '\n destination = ' + out_dir)
 
     for path, dirs, files in os.walk(src_dir):
@@ -30,7 +31,6 @@ if __name__ == "__main__":
                     os.makedirs(filepath(path, '', 'out'))
 
                 if 'html' in file:
-                    # print(src_dir+path.split(src_dir)[0]+file)
                     src_file = open(filepath(path, file, 'src'), 'r')
 
                     out_file = open(filepath(path, file, 'out'), 'a')
@@ -45,5 +45,6 @@ if __name__ == "__main__":
                             out_file.write(line)
                 else:
                     copyfile(filepath(path, file, 'src'), filepath(path, file, 'out'))
-    delta_time = time.time() - start_time
+
+    delta_time = time() - start_time
     print('finished in '+str(delta_time)+'s')

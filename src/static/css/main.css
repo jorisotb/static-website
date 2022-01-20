@@ -72,6 +72,20 @@ a:active {
     overflow: auto;
 }
 
+#about-links {
+    float: left;
+    width: 100%;
+
+    text-align: center;
+    text-decoration: none;
+}
+
+#about-links img {
+    width: 32px;
+    height: 32px;
+    margin: 8px 0px 0px 2px;
+}
+
 #sidebar {
     float: right;
     width: 180px;
@@ -85,22 +99,7 @@ a:active {
 
 #banners {
     float: left;
-    width: 380px;
-}
-
-#links {
-    float: left;
-    width: 380px;
-
     text-align: center;
+    width: 100%;
 }
 
-.icon-link{
-    text-decoration: none;
-}
-
-#links img {
-    width: 32px;
-    height: 32px;
-    margin: 8px 0px 0px 2px;
-}
