@@ -10,6 +10,10 @@ body {
     margin: 8px auto;
 }
 
+h1, h2, h3, h4, p {
+    margin: 2px 0px;
+}
+
 a {
     color: #ffffff;
 }
@@ -72,6 +76,10 @@ a:active {
     overflow: auto;
 }
 
+#blog-list dd {
+    margin: 8px 0px 0px 0px;
+}
+
 #about-links {
     float: left;
     width: 100%;
@@ -102,4 +110,3 @@ a:active {
     text-align: center;
     width: 100%;
 }
-
