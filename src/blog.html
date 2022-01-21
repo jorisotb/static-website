@@ -12,13 +12,12 @@
     @include|header.htm
 
     <div id="content">
-        <h3>Blog</h3>
+        <h2>Blog</h2>
         <hr>
         This is a blog of my thoughts, stories and essays.
-        <br><br>
-        <a href="/blog/nihilism.html">20/01/2022 - Nihilism, but the essay does not go in the direction you expected it to go</a>
-        <br><br>
-        <a href="/blog/template.html">20/01/2022 - blog post template</a>
+        <dl id="blog-list">
+            @bloglist
+        </dl>
     </div>
 
     @include|sidebar.htm

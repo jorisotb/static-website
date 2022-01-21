@@ -2,7 +2,9 @@
 <html>
 
 <head>
-    <title>title here - JorisotB</title>
+    <title>
+        @title
+    </title>
     <link rel="stylesheet" href="../static/css/main.css">
     <style>
     </style>
@@ -12,8 +14,13 @@
     @include|header.htm
 
     <div id="content">
-        <h3>title here</h3>
-        content goes here
+        <h2>
+            @title
+        </h2>
+        @date
+        <hr>
+
+        @content
     </div>
 
     @include|sidebar.htm
