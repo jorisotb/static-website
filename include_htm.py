@@ -21,7 +21,7 @@ def filepath(path, filename, target, source):
     if not path.endswith('/'):
         path += '/'
 
-    return target+path.split(source)[1]+filename
+    return target+path.split(source, maxsplit=1)[1]+filename
 
 def do_copy():
     '''Copy the source directory to the working directory.'''
