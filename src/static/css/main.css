@@ -40,6 +40,12 @@ a:active {
     color: #1353c9;
 }
 
+.smallcaps {
+    display: inline;
+    font-variant: small-caps;
+    font-size: 120%;
+}
+
 #header, #content, #footer {
     float: left;
     margin: 16px 0px 0px 0px;
@@ -137,8 +143,12 @@ a:active {
     border: #a1a5a8 1px solid;
 }
 
+.about-table td {
+    padding: 8px;
+}
+
 .about-table img {
-    width: 64px;
+    height: 100px;
     padding: 3px 0px 0px 4px;
 }
 
