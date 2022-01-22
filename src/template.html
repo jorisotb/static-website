@@ -12,20 +12,18 @@
 
 <body>
     @include|header.htm
+    @include|sidebar.htm
 
     <div id="content">
         <h2>
             @title
         </h2>
+        Last edit on
         @date
         <hr>
 
         @content
     </div>
-
-    @include|sidebar.htm
-
-    @include|footer.htm
 </body>
 
 </html>
