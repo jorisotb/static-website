@@ -6,15 +6,21 @@ from datetime import datetime
 from time import time
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-s', '--source', type=str, default='src/', help='Source directory')
-parser.add_argument('-o', '--output', type=str, default='out/', help='Output directory')
-parser.add_argument('-b', '--blog', type=str, default='blog/', help='Blog directory')
-parser.add_argument('-i', '--include', type=str, default='includes/', help='Includes directory')
-parser.add_argument('-t', '--template', type=str, default='template.html', help='Template file')
-parser.add_argument('-c', '--clean', type=bool, default=False, help='Clean output directory before starting')
+parser.add_argument('-v', '--verbose', default=False, action='store_true', help='Enable verbose logging')
+parser.add_argument('-c', '--clean', default=False, action='store_true', help='Clean output directory before copying files')
+
+parser.add_argument('-s', '--source', type=str, default='src/', help='Specify source directory')
+parser.add_argument('-o', '--output', type=str, default='out/', help='Specify output directory')
+parser.add_argument('-b', '--blog', type=str, default='blog/', help='Specify blog directory')
+parser.add_argument('-i', '--include', type=str, default='includes/', help='Specify includes directory')
+parser.add_argument('-t', '--template', type=str, default='template.html', help='Specify template file')
 args = parser.parse_args()
 
 blog_posts = []
+
+def debug_print(s):
+    if args.verbose:
+        print(s)
 
 def filepath(path, filename, target, source):
     '''Generate nice filepaths because os.crawl() is strange.'''
@@ -25,10 +31,10 @@ def filepath(path, filename, target, source):
 
 def do_copy():
     '''Copy the source directory to the working directory.'''
-    print('Copying files to destination folder...')
+    print('Copying files to output folder...')
     for path, dirs, files in os.walk(args.source):
         for file in files:
-            print('    '+filepath(path,file,args.output,args.source)+'...')
+            debug_print('    '+filepath(path,file,args.output,args.source)+'...')
 
             if not os.path.exists(filepath(path, '', args.output, args.source)):
                 os.makedirs(filepath(path, '', args.output, args.source))
@@ -44,7 +50,7 @@ def do_blog_posts():
     for path, dirs, files in os.walk(args.output+args.blog):
         for file in files:
             if file.endswith('.htm'):
-                print('    '+filepath(path,file,args.output,args.output)+'...')
+                debug_print('    '+filepath(path,file,args.output,args.output)+'...')
                 post = open(path+file, 'r')
 
                 blog_posts.append([])
@@ -89,7 +95,7 @@ def do_includes(link_mode = False):
     for path, dirs, files in os.walk(args.output):
         for file in files:
             if file.endswith('.html'):
-                print('    '+filepath(path,file,args.output,args.output)+'...')
+                debug_print('    '+filepath(path,file,args.output,args.output)+'...')
 
                 src_file = open(filepath(path, file, args.output, args.output), 'r')
                 out_file = open(filepath(path, file+'.tmp', args.output, args.output), 'a')
@@ -125,19 +131,19 @@ def do_cleanup(full_clean_mode=False):
     for path, dirs, files in os.walk(args.output):
         for file in files:
             if full_clean_mode or file.endswith('.htm'):
-                print('    '+filepath(path,file,args.output,args.output)+'...')
+                debug_print('    '+filepath(path,file,args.output,args.output)+'...')
                 os.remove(filepath(path, file, args.output, args.output))
 
     if not full_clean_mode:
         print('Removing empty directories...')
     for path, dirs, files in os.walk(args.output):
         if not dirs and not files:
-            print('    '+path+'...')
+            debug_print('    '+path+'...')
             os.rmdir(path)
 
 if __name__ == "__main__":
     start_time = time()
-    print('running include_htm with\n      source = ' + args.source + '\n destination = ' + args.output)
+    print('running include_htm with\n  source = ' + args.source + '\n  output = ' + args.output)
 
     if (args.clean):
         do_cleanup(full_clean_mode=True)
@@ -149,4 +155,4 @@ if __name__ == "__main__":
     do_cleanup()
 
     delta_time = time() - start_time
-    print('finished in '+str(delta_time)+'s')
+    print('Finished in '+str(round(delta_time, 3))+'s')
