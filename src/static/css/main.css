@@ -11,12 +11,12 @@
 }
 
 html {
-    background-color: #181a20;
+    font-family: "DejaVu Sans Mono", "Courier New", Courier, monospace;
+    letter-spacing: 0.8px;
+    line-height: 20px;
+    font-size: 11pt;
+    background-color: black;
     color: #ffffff;
-    font-family: "DejaVu Sans Mono", "Source Code Pro", sans-serif;
-    letter-spacing: 0.5px;
-    line-height: 18px;
-    font-size: 14px;
 }
 
 body {
@@ -44,7 +44,8 @@ a:active {
     float: left;
     margin: 16px 0px 0px 0px;
 
-    background-color: #2c2e34;
+    background-color: #181a20;
+    border: #a1a5a8 1px solid;
 }
 
 #header {
@@ -69,31 +70,41 @@ a:active {
     float: left;
     margin: 22px 0px 0px 8px;
 
-    font-size: 25px;
+    font-size: 200%;
+}
+
+#quick-links {
+    float: right;
+    margin: 16px 10px 0px 8px;
+
+    text-align: center;
+    text-decoration: none;
+}
+
+#quick-links img {
+    width: 32px;
+    height: 32px;
+    margin: 8px 0px 0px 2px;
 }
 
 #sidebar {
     float: left;
+    position: fixed;
+    top: 106px;
 }
 
-#menu {
+#sidebar div {
+    width: 180px;
     padding: 10px;
     margin-top: 16px;
 
-    background-color: #2c2e34;
+    background-color: #181a20;
+    border: #a1a5a8 1px solid;
 }
 
 #menu a {
     display: block;
     padding: 6px 0px 6px 0px;
-}
-
-#latest-post {
-    width: 180px;
-    padding: 10px;
-    margin-top: 16px;
-
-    background-color: #2c2e34;
 }
 
 #latest-post a {
@@ -103,37 +114,34 @@ a:active {
 #content {
     float: right;
     width: 564px;
-    max-height: 800px;
     padding: 10px;
+    margin-bottom: 16px;
 
-    overflow: auto;
+    text-align: justify;
+}
+
+.about-link {
+    text-align: center;
+}
+
+.about-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    font-size: 90%;
+    text-align: center;
+    background-color: #111111;
+}
+
+.about-table tr {
+    border: #a1a5a8 1px solid;
+}
+
+.about-table img {
+    width: 64px;
+    padding: 3px 0px 0px 4px;
 }
 
 #blog-list dd {
     margin: 8px 0px 0px 0px;
-}
-
-#about-links {
-    float: left;
-    width: 100%;
-
-    text-align: center;
-    text-decoration: none;
-}
-
-#about-links img {
-    width: 32px;
-    height: 32px;
-    margin: 8px 0px 0px 2px;
-}
-
-#footer {
-    width: 780px;
-    padding: 10px;
-}
-
-#banners {
-    float: left;
-    text-align: center;
-    width: 100%;
 }
