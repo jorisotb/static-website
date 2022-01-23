@@ -16,7 +16,13 @@ parser.add_argument('-i', '--include', type=str, default='includes/', help='Spec
 parser.add_argument('-t', '--template', type=str, default='template.html', help='Specify template file')
 args = parser.parse_args()
 
-blog_posts = []
+blogposts = []
+
+class blogpost:
+    def __init__(self, date, title, content):
+        self.title = title
+        self.date = date
+        self.content = content
 
 def debug_print(s):
     if args.verbose:
@@ -42,47 +48,42 @@ def do_copy():
             copyfile(filepath(path, file, args.source, args.source),
                      filepath(path, file, args.output, args.source))
 
-def do_blog_posts():
+def do_blogposts():
     '''Generate blog post HTML files from the htm files in the blog
     directory using the template file.'''
     print('Processing blog posts...')
 
-    for path, dirs, files in os.walk(args.output+args.blog):
-        for file in files:
-            if file.endswith('.htm'):
-                debug_print('    '+filepath(path,file,args.output,args.output)+'...')
-                post = open(path+file, 'r')
+    blog_dir = args.output+args.blog
+    for file in os.listdir(blog_dir):
+        if file.endswith('.htm'):
+            debug_print('    '+filepath(args.output,file,args.output,args.output)+'...')
+            post_file = open(blog_dir+file, 'r')
+            blogposts.append(blogpost(post_file.readline().strip(),
+                                      post_file.readline().strip(),
+                                      ''.join(post_file.read().strip())))
+            post_file.close()
 
-                blog_posts.append([])
-                for line in post:
-                    blog_posts[-1].append(line.strip())
-                post.close()
+    blogposts.sort(key = lambda post: datetime.strptime(post.date, '%d/%m/%Y'), reverse=True)
 
-        blog_posts.sort(key = lambda post: datetime.strptime(post[0], '%d/%m/%Y'), reverse=True)
+    for post in blogposts:
+        src_file = open(args.output+args.template, 'r')
+        out_file = open(args.output+args.blog+post.title+'.html', 'a')
+        out_file.truncate(0)
 
-        for post in blog_posts:
-            date = post[0]
-            title = post[1]
-            content = ' '.join(i for i in post[2:])
+        for line in src_file:
+            if '@title' in line:
+                out_file.write(post.title)
+            elif '@date' in line:
+                out_file.write(post.date)
+            elif '@content' in line:
+                out_file.write(post.content)
+            else:
+                out_file.write(line)
 
-            src_file = open(args.output+args.template, 'r')
-            out_file = open(args.output+args.blog+title+'.html', 'a')
-            out_file.truncate(0)
+        src_file.close()
+        out_file.close()
 
-            for line in src_file:
-                if '@title' in line:
-                    out_file.write(title)
-                elif '@date' in line:
-                    out_file.write(date)
-                elif '@content' in line:
-                    out_file.write(content)
-                else:
-                    out_file.write(line)
-
-            src_file.close()
-            out_file.close()
-
-def do_includes(link_mode = False):
+def do_includes(link_mode=False):
     '''Replace @include|<some file> statements with the contents of
     corresponding file.
     If link_mode is true, instead replace @bloglist and @latest statements
@@ -108,11 +109,10 @@ def do_includes(link_mode = False):
                             out_file.write(t_line)
                         inc_file.close()
                     elif link_mode and '@bloglist' in line:
-                        for post in blog_posts:
-                            out_file.write('<dd><a href="/blog/'+post[1]+'.html">'+post[0]+' - '+post[1]+'</a></dd>')
+                        for post in blogposts:
+                            out_file.write('<dd><a href="/blog/'+post.title+'.html">'+post.date+' - '+post.title+'</a></dd>')
                     elif link_mode and '@latest' in line:
-                        post = blog_posts[0]
-                        out_file.write('<a href="/blog/'+post[1]+'.html">'+post[0]+' - '+post[1]+'</a>')
+                        out_file.write('<a href="/blog/'+blogposts[0].title+'.html">'+blogposts[0].date+' - '+blogposts[0].title+'</a>')
                     else:
                         out_file.write(line)
 
@@ -149,7 +149,7 @@ if __name__ == "__main__":
         do_cleanup(full_clean_mode=True)
 
     do_copy()
-    do_blog_posts()
+    do_blogposts()
     do_includes()
     do_includes(link_mode=True)
     do_cleanup()
