@@ -1,20 +1,17 @@
 @font-face {
-    font-family: "Source Code Pro";
+    font-family: "Anonymous Pro";
     font-weight: normal;
-    src: url(/static/font/SourceCodePro-Regular.otf);
+    src: url(/static/font/AnonymousPro-Regular.ttf);
 }
 
 @font-face {
-    font-family: "DejaVu Sans Mono";
-    font-weight: normal;
-    src: url(/static/font/DejaVuSansMono.ttf);
+    font-family: "Anonymous Pro";
+    font-weight: bold;
+    src: url(/static/font/AnonymousPro-Bold.ttf);
 }
 
 html {
-    font-family: "DejaVu Sans Mono", "Courier New", Courier, monospace;
-    letter-spacing: 0.8px;
-    line-height: 20px;
-    font-size: 11pt;
+    font-family: "Anonymous Pro", monospace;
     background-color: black;
     color: #ffffff;
 }
@@ -46,7 +43,7 @@ a:active {
     font-size: 120%;
 }
 
-#header, #content, #footer {
+#header, #content {
     float: left;
     margin: 16px 0px 0px 0px;
 
@@ -55,13 +52,13 @@ a:active {
 }
 
 #header {
-    width: 800px;
+    width: 798px;
 }
 
-#profile a {
+#profile {
     float: left;
     height: 60px;
-    padding: 10px;
+    margin: 10px;
 }
 
 #profile-img {
@@ -81,7 +78,7 @@ a:active {
 
 #quick-links {
     float: right;
-    margin: 16px 10px 0px 8px;
+    margin: 24px 10px 0px 0px;
 
     text-align: center;
     text-decoration: none;
@@ -90,17 +87,16 @@ a:active {
 #quick-links img {
     width: 32px;
     height: 32px;
-    margin: 8px 0px 0px 2px;
 }
 
 #sidebar {
-    float: left;
+    width: 178px;
     position: fixed;
     top: 106px;
 }
 
 #sidebar div {
-    width: 180px;
+    width: 100%;
     padding: 10px;
     margin-top: 16px;
 
@@ -119,7 +115,7 @@ a:active {
 
 #content {
     float: right;
-    width: 564px;
+    width: 562px;
     padding: 10px;
     margin-bottom: 16px;
 
