@@ -43,22 +43,21 @@ a:active {
     font-size: 120%;
 }
 
-#header, #content {
-    float: left;
-    margin: 16px 0px 0px 0px;
-
+#header, #sidebar div, #content {
     background-color: #181a20;
     border: #a1a5a8 1px solid;
 }
 
 #header {
     width: 798px;
+    height: 78px;
+    margin: 16px 0px 0px 0px;
 }
 
 #profile {
     float: left;
     height: 60px;
-    margin: 10px;
+    margin: 9px;
 }
 
 #profile-img {
@@ -71,7 +70,7 @@ a:active {
 
 #profile-text {
     float: left;
-    margin: 22px 0px 0px 8px;
+    margin: 14px 0px 0px 8px;
 
     font-size: 200%;
 }
@@ -90,34 +89,25 @@ a:active {
 }
 
 #sidebar {
-    width: 178px;
     position: fixed;
-    top: 106px;
 }
 
 #sidebar div {
-    width: 100%;
+    width: 170px;
     padding: 10px;
     margin-top: 16px;
-
-    background-color: #181a20;
-    border: #a1a5a8 1px solid;
 }
 
-#menu a {
-    display: block;
-    padding: 6px 0px 6px 0px;
-}
-
-#latest-post a {
+#sidebar a {
+    padding: 4px 0px 4px 8px;
     display: block;
 }
 
 #content {
     float: right;
-    width: 562px;
+    width: 570px;
     padding: 10px;
-    margin-bottom: 16px;
+    margin: 16px 0px 16px 0px;
 
     text-align: justify;
 }
@@ -126,11 +116,15 @@ a:active {
     text-align: center;
 }
 
+.about-list {
+    margin: 10px 0px 10px 32px;
+}
+
 .about-table {
     width: 100%;
     border-collapse: collapse;
 
-    font-size: 90%;
+    font-size: 95%;
     text-align: center;
     background-color: #111111;
 }
@@ -144,7 +138,7 @@ a:active {
 }
 
 .about-table img {
-    height: 100px;
+    height: 96px;
     padding: 3px 0px 0px 4px;
 }
 
