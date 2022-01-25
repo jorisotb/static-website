@@ -7,7 +7,8 @@ from time import time
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-v', '--verbose', default=False, action='store_true', help='Enable verbose logging')
-parser.add_argument('-c', '--clean', default=False, action='store_true', help='Clean output directory before copying files')
+parser.add_argument('-c', '--clean', default=False, action='store_true', help='!WARNING! be very careful with this option, it WILL delete all contents of the output directory. Clean output directory before copying files')
+parser.add_argument('-d', '--disable-blog', default=False, action='store_true', help='Disable blogging functionality. Use this if you have no blog directory, or the directory is empty')
 
 parser.add_argument('-s', '--source', type=str, default='src/', help='Specify source directory')
 parser.add_argument('-o', '--output', type=str, default='out/', help='Specify output directory')
@@ -59,8 +60,8 @@ def do_blogposts():
             debug_print('    '+filepath(args.output,file,args.output,args.output)+'...')
             post_file = open(blog_dir+file, 'r')
             blogposts.append(blogpost(post_file.readline().strip(),
-                                      post_file.readline().strip(),
-                                      ''.join(post_file.read().strip())))
+                                    post_file.readline().strip(),
+                                    ''.join(post_file.read().strip())))
             post_file.close()
 
     blogposts.sort(key = lambda post: datetime.strptime(post.date, '%d/%m/%Y'), reverse=True)
@@ -149,9 +150,11 @@ if __name__ == "__main__":
         do_cleanup(full_clean_mode=True)
 
     do_copy()
-    do_blogposts()
+    if not args.disable_blog:
+        do_blogposts()
     do_includes()
-    do_includes(link_mode=True)
+    if not args.disable_blog:
+        do_includes(link_mode=True)
     do_cleanup()
 
     delta_time = time() - start_time
