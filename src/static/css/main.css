@@ -40,7 +40,7 @@ a:active {
 .smallcaps {
     display: inline;
     font-variant: small-caps;
-    font-size: 120%;
+    font-size: 115%;
 }
 
 #header, #sidebar div, #content {
@@ -129,17 +129,20 @@ a:active {
     background-color: #111111;
 }
 
+.about-table br {
+    line-height: 160%;
+}
+
 .about-table tr {
     border: #a1a5a8 1px solid;
 }
 
 .about-table td {
-    padding: 8px;
+    padding: 0px 10px 0px 0px;
 }
 
 .about-table img {
-    height: 96px;
-    padding: 3px 0px 0px 4px;
+    padding: 2px 0px 0px 2px;
 }
 
 #blog-list dd {
