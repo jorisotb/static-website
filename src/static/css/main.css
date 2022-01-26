@@ -12,6 +12,7 @@
 
 html {
     font-family: "Anonymous Pro", monospace;
+    font-size: 12pt;
     background-color: black;
     color: #ffffff;
 }
@@ -124,7 +125,7 @@ a:active {
     width: 100%;
     border-collapse: collapse;
 
-    font-size: 95%;
+    font-size: 11pt;
     text-align: center;
     background-color: #111111;
 }
