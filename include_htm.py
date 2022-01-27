@@ -78,7 +78,7 @@ def do_blogposts():
 
     for post in blogposts:
         src_file = open(args.output+args.template, 'r')
-        out_file = open(args.output+blogpost_filepath(post), 'a')
+        out_file = open(args.output+blogpost_filepath(post), 'a', newline='\r\n')
         out_file.truncate(0)
 
         for line in src_file:
@@ -112,12 +112,12 @@ def do_includes(link_mode=False):
                 debug_print('    '+filepath(path,file,args.output,args.output)+'...')
 
                 src_file = open(filepath(path, file, args.output, args.output), 'r')
-                out_file = open(filepath(path, file+'.tmp', args.output, args.output), 'a')
+                out_file = open(filepath(path, file+'.tmp', args.output, args.output), 'a', newline='\r\n')
                 out_file.truncate(0)
 
                 for line in src_file:
                     if not link_mode and '@include' in line:
-                        inc_file = open(args.source+args.include+line.strip().split('|')[1])
+                        inc_file = open(args.source+args.include+line.strip().split('|')[1], 'r')
                         for t_line in inc_file:
                             out_file.write(t_line)
                         inc_file.close()
