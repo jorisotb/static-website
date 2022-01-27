@@ -124,15 +124,15 @@ def do_includes(link_mode=False):
                     elif link_mode and '@bloglist' in line:
                         for post in blogposts:
                             if (args.list_order == 'edited'):
-                                out_file.write('<dd><a href="'+blogpost_filepath(post)+'">'+post.edited+' - '+post.title+'</a></dd>')
+                                out_file.write('<dd><a href="/'+blogpost_filepath(post)+'">'+post.edited+' - '+post.title+'</a></dd>')
                             elif (args.list_order == 'posted'):
-                                out_file.write('<dd><a href="'+blogpost_filepath(post)+'">'+post.posted+' - '+post.title+'</a></dd>')
+                                out_file.write('<dd><a href="/'+blogpost_filepath(post)+'">'+post.posted+' - '+post.title+'</a></dd>')
                     elif link_mode and '@latest' in line:
                         post = blogposts[0]
                         if (args.list_order == 'edited'):
-                            out_file.write('<a href="'+blogpost_filepath(post)+'">'+post.edited+' - '+post.title+'</a>')
+                            out_file.write('<a href="/'+blogpost_filepath(post)+'">'+post.edited+' - '+post.title+'</a>')
                         elif (args.list_order == 'posted'):
-                            out_file.write('<a href="'+blogpost_filepath(post)+'">'+post.posted+' - '+post.title+'</a>')
+                            out_file.write('<a href="/'+blogpost_filepath(post)+'">'+post.posted+' - '+post.title+'</a>')
                     else:
                         out_file.write(line)
 
