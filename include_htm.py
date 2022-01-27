@@ -6,23 +6,25 @@ from datetime import datetime
 from time import time
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-v', '--verbose', default=False, action='store_true', help='Enable verbose logging')
+parser.add_argument('-v', '--verbose', default=False, action='store_true', help='Enable verbose printing')
 parser.add_argument('-c', '--clean', default=False, action='store_true', help='!WARNING! be very careful with this option, it WILL delete all contents of the output directory. Clean output directory before copying files')
 parser.add_argument('-d', '--disable-blog', default=False, action='store_true', help='Disable blogging functionality. Use this if you have no blog directory, or the directory is empty')
 
-parser.add_argument('-s', '--source', type=str, default='src/', help='Specify source directory')
-parser.add_argument('-o', '--output', type=str, default='out/', help='Specify output directory')
-parser.add_argument('-b', '--blog', type=str, default='blog/', help='Specify blog directory')
-parser.add_argument('-i', '--include', type=str, default='includes/', help='Specify includes directory')
-parser.add_argument('-t', '--template', type=str, default='template.html', help='Specify template file')
+parser.add_argument('-s', '--source', type=str, default='src/', help='Specify source directory (default: src/)')
+parser.add_argument('-o', '--output', type=str, default='out/', help='Specify output directory (default: out/')
+parser.add_argument('-i', '--include', type=str, default='includes/', help='Specify includes directory (default: includes/)')
+parser.add_argument('-b', '--blog', type=str, default='blog/', help='Specify blog directory (default: blog/)')
+parser.add_argument('-t', '--template', type=str, default='template.html', help='Specify template file (default: template.html)')
+parser.add_argument('-l', '--list-order', type=str, default='edited', help='Specify ordering of the bloglist (posted or edited) (default: edited)')
 args = parser.parse_args()
 
 blogposts = []
 
 class blogpost:
-    def __init__(self, date, title, content):
+    def __init__(self, posted, edited, title, content):
+        self.posted = posted
+        self.edited = edited
         self.title = title
-        self.date = date
         self.content = content
 
 def debug_print(s):
@@ -36,18 +38,22 @@ def filepath(path, filename, target, source):
 
     return target+path.split(source, maxsplit=1)[1]+filename
 
+def blogpost_filepath(post):
+    return args.blog+post.posted.replace('/', '-')+'_'+post.title.replace(' ', '-')+'.html'
+
 def do_copy():
     '''Copy the source directory to the working directory.'''
     print('Copying files to output folder...')
     for path, dirs, files in os.walk(args.source):
         for file in files:
-            debug_print('    '+filepath(path,file,args.output,args.source)+'...')
+            if not file.endswith('.hidden'):
+                debug_print('    '+filepath(path,file,args.output,args.source)+'...')
 
-            if not os.path.exists(filepath(path, '', args.output, args.source)):
-                os.makedirs(filepath(path, '', args.output, args.source))
+                if not os.path.exists(filepath(path, '', args.output, args.source)):
+                    os.makedirs(filepath(path, '', args.output, args.source))
 
-            copyfile(filepath(path, file, args.source, args.source),
-                     filepath(path, file, args.output, args.source))
+                copyfile(filepath(path, file, args.source, args.source),
+                         filepath(path, file, args.output, args.source))
 
 def do_blogposts():
     '''Generate blog post HTML files from the htm files in the blog
@@ -60,22 +66,28 @@ def do_blogposts():
             debug_print('    '+filepath(args.output,file,args.output,args.output)+'...')
             post_file = open(blog_dir+file, 'r')
             blogposts.append(blogpost(post_file.readline().strip(),
-                                    post_file.readline().strip(),
-                                    ''.join(post_file.read().strip())))
+                                      post_file.readline().strip(),
+                                      post_file.readline().strip(),
+                                      ''.join(post_file.read().strip())))
             post_file.close()
 
-    blogposts.sort(key = lambda post: datetime.strptime(post.date, '%d/%m/%Y'), reverse=True)
+    if (args.list_order == 'edited'):
+        blogposts.sort(key = lambda post: datetime.strptime(post.edited, '%d/%m/%Y'), reverse=True)
+    elif (args.list_order == 'posted'):
+        blogposts.sort(key = lambda post: datetime.strptime(post.posted, '%d/%m/%Y'), reverse=True)
 
     for post in blogposts:
         src_file = open(args.output+args.template, 'r')
-        out_file = open(args.output+args.blog+post.title+'.html', 'a')
+        out_file = open(args.output+blogpost_filepath(post), 'a')
         out_file.truncate(0)
 
         for line in src_file:
-            if '@title' in line:
+            if '@posted' in line:
+                out_file.write(post.posted)
+            elif '@edited' in line:
+                out_file.write(post.edited)
+            elif '@title' in line:
                 out_file.write(post.title)
-            elif '@date' in line:
-                out_file.write(post.date)
             elif '@content' in line:
                 out_file.write(post.content)
             else:
@@ -111,9 +123,16 @@ def do_includes(link_mode=False):
                         inc_file.close()
                     elif link_mode and '@bloglist' in line:
                         for post in blogposts:
-                            out_file.write('<dd><a href="/blog/'+post.title+'.html">'+post.date+' - '+post.title+'</a></dd>')
+                            if (args.list_order == 'edited'):
+                                out_file.write('<dd><a href="'+blogpost_filepath(post)+'">'+post.edited+' - '+post.title+'</a></dd>')
+                            elif (args.list_order == 'posted'):
+                                out_file.write('<dd><a href="'+blogpost_filepath(post)+'">'+post.posted+' - '+post.title+'</a></dd>')
                     elif link_mode and '@latest' in line:
-                        out_file.write('<a href="/blog/'+blogposts[0].title+'.html">'+blogposts[0].date+' - '+blogposts[0].title+'</a>')
+                        post = blogposts[0]
+                        if (args.list_order == 'edited'):
+                            out_file.write('<a href="'+blogpost_filepath(post)+'">'+post.edited+' - '+post.title+'</a>')
+                        elif (args.list_order == 'posted'):
+                            out_file.write('<a href="'+blogpost_filepath(post)+'">'+post.posted+' - '+post.title+'</a>')
                     else:
                         out_file.write(line)
 
