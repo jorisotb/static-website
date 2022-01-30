@@ -146,6 +146,14 @@ a:active {
     padding: 2px 0px 0px 2px;
 }
 
+#blog-list, #changelog {
+    margin: 10px 0px 0px 0px;
+}
+
 #blog-list dd {
-    margin: 8px 0px 0px 0px;
+    margin: 8px 0px 0px 16px;
+}
+
+#changelog dd {
+    margin: 0px;
 }
