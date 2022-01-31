@@ -1,5 +1,5 @@
 # JorisotB's Static site generator
-This project contains both my personal website and the python script used to compile it.
+This project contains both my personal website ([jorisotb.net](https://jorisotb.net)) and the python script used to compile it.
 
 The website is entirely static, no PHP, no JavaScript.
 
