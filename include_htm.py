@@ -43,7 +43,7 @@ def blogpost_filepath(post):
 
 def do_copy():
     '''Copy the source directory to the working directory.'''
-    print('Copying files to output folder...')
+    print('Copying files to output directory...')
     for path, dirs, files in os.walk(args.source):
         for file in files:
             if not file.endswith('.hidden'):
@@ -145,7 +145,7 @@ def do_includes(link_mode=False):
 def do_cleanup(full_clean_mode=False):
     '''Clean htm files and empty directories from the working directory.'''
     if full_clean_mode:
-        print('Emptying working directory...')
+        print('Emptying output directory...')
     else:
         print('Removing unnecessary files...')
     for path, dirs, files in os.walk(args.output):

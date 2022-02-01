@@ -151,7 +151,7 @@ a:active {
 }
 
 #blog-list dd {
-    margin: 8px 0px 0px 16px;
+    margin: 8px 0px 0px 0px;
 }
 
 #changelog dd {
