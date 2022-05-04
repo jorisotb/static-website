@@ -1,13 +1,26 @@
 @font-face {
     font-family: "Anonymous Pro";
     font-weight: normal;
-    src: url(/static/font/AnonymousPro-Regular.ttf);
+    font-style: normal;
+    src: url(/static/font/AnonymousPro-Regular.woff2);
 }
-
 @font-face {
     font-family: "Anonymous Pro";
     font-weight: bold;
-    src: url(/static/font/AnonymousPro-Bold.ttf);
+    font-style: normal;
+    src: url(/static/font/AnonymousPro-Bold.woff2);
+}
+@font-face {
+    font-family: "Anonymous Pro";
+    font-weight: normal;
+    font-style: italic;
+    src: url(/static/font/AnonymousPro-Italic.woff2);
+}
+@font-face {
+    font-family: "Anonymous Pro";
+    font-weight: bold;
+    font-style: italic;
+    src: url(/static/font/AnonymousPro-BoldItalic.woff2);
 }
 
 html {
