@@ -64,7 +64,7 @@ def do_blogposts():
     for file in os.listdir(blog_dir):
         if file.endswith('.htm'):
             debug_print('    '+filepath(args.output,file,args.output,args.output)+'...')
-            post_file = open(blog_dir+file, 'r')
+            post_file = open(blog_dir+file, 'r', encoding='utf8')
             blogposts.append(blogpost(post_file.readline().strip(),
                                       post_file.readline().strip(),
                                       post_file.readline().strip(),
@@ -77,8 +77,8 @@ def do_blogposts():
         blogposts.sort(key = lambda post: datetime.strptime(post.posted, '%d/%m/%Y'), reverse=True)
 
     for post in blogposts:
-        src_file = open(args.output+args.template, 'r')
-        out_file = open(args.output+blogpost_filepath(post), 'a', newline='\r\n')
+        src_file = open(args.output+args.template, 'r', encoding='utf8')
+        out_file = open(args.output+blogpost_filepath(post), 'a', newline='\r\n', encoding='utf8')
         out_file.truncate(0)
 
         for line in src_file:
@@ -111,8 +111,8 @@ def do_includes(link_mode=False):
             if file.endswith('.html'):
                 debug_print('    '+filepath(path,file,args.output,args.output)+'...')
 
-                src_file = open(filepath(path, file, args.output, args.output), 'r')
-                out_file = open(filepath(path, file+'.tmp', args.output, args.output), 'a', newline='\r\n')
+                src_file = open(filepath(path, file, args.output, args.output), 'r', encoding='utf8')
+                out_file = open(filepath(path, file+'.tmp', args.output, args.output), 'a', newline='\r\n', encoding='utf8')
                 out_file.truncate(0)
 
                 for line in src_file:
