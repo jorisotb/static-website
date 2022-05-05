@@ -19,7 +19,7 @@ The tool also generates the blog posts themselves. It scans a provided template 
 @title
 @content
 ```
-These statements are then replaced with the dates, title and body of each post. Posts are stored in `.htm` files in the blog directory (default: `blog/`). They must have the following format, where dates are written as `dd/mm/yyyy`:
+These statements are then replaced with the dates, title and body of each post. Posts are stored in `.htm` files in the blog directory (default: `blog/`). They must have the following format, where dates are written as `dd-mm-yyyy`:
 ```
 posted date
 edited date
@@ -34,7 +34,7 @@ The generated blog posts are automatically linked using the following statements
 @bloglist
 @latest
 ```
-`@bloglist` is replaced with a list of links to all blogposts, ordered new to old. By default, posts are ordered by the date on which they were edited, but you can add `--list-order posted` to the execution to order them by the dates on which they were posted.
+`@bloglist` is replaced with a list of links to all blogposts, ordered new to old. By default, posts are ordered by the date on which they were posted, but you can add `-l edited` to the execution to order them by the dates on which they were posted.
 `@latest` is replaced with a link to the latest blogpost.
 
 Todo:
@@ -43,4 +43,5 @@ Todo:
   * [x] add cmd flags
   * [x] add support for different directory structures
   * [x] add blog post sorting options (posted date/edited date)
+  * [ ] rss/atom feed support
   * [ ] support for different file types

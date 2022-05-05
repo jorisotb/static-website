@@ -15,7 +15,7 @@ parser.add_argument('-o', '--output', type=str, default='out/', help='Specify ou
 parser.add_argument('-i', '--include', type=str, default='includes/', help='Specify includes directory (default: includes/)')
 parser.add_argument('-b', '--blog', type=str, default='blog/', help='Specify blog directory (default: blog/)')
 parser.add_argument('-t', '--template', type=str, default='template.html', help='Specify template file (default: template.html)')
-parser.add_argument('-l', '--list-order', type=str, default='edited', help='Specify ordering of the bloglist (posted or edited) (default: edited)')
+parser.add_argument('-l', '--list-order', type=str, default='posted', help='Specify ordering of the bloglist (posted or edited) (default: posted)')
 args = parser.parse_args()
 
 blogposts = []
@@ -72,9 +72,9 @@ def do_blogposts():
             post_file.close()
 
     if (args.list_order == 'edited'):
-        blogposts.sort(key = lambda post: datetime.strptime(post.edited, '%d/%m/%Y'), reverse=True)
+        blogposts.sort(key = lambda post: datetime.strptime(post.edited, '%d-%m-%Y'), reverse=True)
     elif (args.list_order == 'posted'):
-        blogposts.sort(key = lambda post: datetime.strptime(post.posted, '%d/%m/%Y'), reverse=True)
+        blogposts.sort(key = lambda post: datetime.strptime(post.posted, '%d-%m-%Y'), reverse=True)
 
     for post in blogposts:
         src_file = open(args.output+args.template, 'r', encoding='utf8')
@@ -126,7 +126,11 @@ def do_includes(link_mode=False):
                             if (args.list_order == 'edited'):
                                 out_file.write('<dd><a href="/'+blogpost_filepath(post)+'">'+post.edited+' - '+post.title+'</a></dd>')
                             elif (args.list_order == 'posted'):
-                                out_file.write('<dd><a href="/'+blogpost_filepath(post)+'">'+post.posted+' - '+post.title+'</a></dd>')
+                                if datetime.strptime(post.edited, '%d-%m-%Y') > datetime.strptime(post.posted, '%d-%m-%Y'):
+                                    out_file.write('<dd><a href="/'+blogpost_filepath(post)+'">'+post.posted+' - '+post.title+'</a><sup>*</sup></dd>')
+                                else:
+                                    out_file.write('<dd><a href="/'+blogpost_filepath(post)+'">'+post.posted+' - '+post.title+'</a></dd>')
+
                     elif link_mode and '@latest' in line:
                         post = blogposts[0]
                         if (args.list_order == 'edited'):
