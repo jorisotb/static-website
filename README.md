@@ -34,7 +34,7 @@ The generated blog posts are automatically linked using the following statements
 @bloglist
 @latest
 ```
-`@bloglist` is replaced with a list of links to all blogposts, ordered new to old. By default, posts are ordered by the date on which they were posted, but you can add `-l edited` to the execution to order them by the dates on which they were posted.
+`@bloglist` is replaced with a list of links to all blogposts, ordered new to old. By default, posts are ordered by the date on which they were posted, but you can add `-l edited` to the execution to order them by the dates on which they were edited.
 `@latest` is replaced with a link to the latest blogpost.
 
 Todo:

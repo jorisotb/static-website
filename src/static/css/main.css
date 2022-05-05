@@ -26,8 +26,8 @@
 html {
     font-family: "Anonymous Pro", monospace;
     font-size: 12pt;
-    background-color: black;
-    color: #ffffff;
+    background-color: #111111;
+    color: #eeeeee;
 }
 
 body {
@@ -40,15 +40,16 @@ h1, h2, h3, h4, p {
 }
 
 a {
-    color: #ffffff;
+    color: #0399d6;
+    text-decoration: none;
 }
 
-a:hover, hr {
+a:hover {
+    text-decoration: underline;
+}
+
+a:active, hr {
     color: #a1a5a8;
-}
-
-a:active {
-    color: #1353c9;
 }
 
 .smallcaps {
@@ -87,6 +88,7 @@ a:active {
     margin: 14px 0px 0px 8px;
 
     font-size: 200%;
+    color: #eeeeee;
 }
 
 #quick-links {
@@ -94,7 +96,6 @@ a:active {
     margin: 24px 10px 0px 0px;
 
     text-align: center;
-    text-decoration: none;
 }
 
 #quick-links img {
@@ -115,6 +116,12 @@ a:active {
 #sidebar a {
     padding: 4px 0px 4px 8px;
     display: block;
+    color: #eeeeee;
+}
+
+#profile-text:hover, #sidebar a:hover {
+    color: #0399d6;
+    text-decoration: none;
 }
 
 #content {
