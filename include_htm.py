@@ -1,5 +1,6 @@
 import os
 import argparse
+import re
 
 from shutil import copyfile
 from datetime import datetime
@@ -39,7 +40,8 @@ def filepath(path, filename, target, source):
     return target+path.split(source, maxsplit=1)[1]+filename
 
 def blogpost_filepath(post):
-    return args.blog+post.posted.replace('/', '-')+'_'+post.title.replace(' ', '-')+'.html'
+    clean_title = re.sub(r'\W+', '-', post.title[:32])
+    return args.blog+post.posted+'-'+clean_title+'.html'
 
 def do_copy():
     '''Copy the source directory to the working directory.'''
