@@ -1,31 +1,46 @@
 @font-face {
-    font-family: "Dustismo";
+    font-family: 'Dustismo';
     font-weight: normal;
     font-style: normal;
+    unicode-range: U+0-2F, U+3A-10FFFF;
     src: url(/static/font/Dustismo-Regular.woff2);
 }
 @font-face {
-    font-family: "Dustismo";
+    font-family: 'Dustismo';
     font-weight: bold;
     font-style: normal;
+    unicode-range: U+0-2F, U+3A-10FFFF;
     src: url(/static/font/Dustismo-Bold.woff2);
 }
 @font-face {
-    font-family: "Dustismo";
+    font-family: 'Dustismo';
     font-weight: normal;
     font-style: italic;
+    unicode-range: U+0-2F, U+3A-10FFFF;
     src: url(/static/font/Dustismo-Italic.woff2);
 }
 @font-face {
-    font-family: "Dustismo";
+    font-family: 'Dustismo';
     font-weight: bold;
     font-style: italic;
+    unicode-range: U+0-2F, U+3A-10FFFF;
     src: url(/static/font/Dustismo-Bold-Italic.woff2);
 }
 
+.smallcaps {
+    display: inline;
+    font-variant: small-caps;
+    font-size: 110%;
+}
+
+.monospace {
+    display: inline;
+    font-family: monospace;
+}
+
 html {
-    font-family: "Dustismo";
-    font-size: 12pt;
+    font-family: 'Dustismo', sans-serif;
+    font-size: 13pt;
     background-color: #111111;
     color: #eeeeee;
 }
@@ -50,12 +65,6 @@ a:hover {
 
 a:active, hr {
     color: #a1a5a8;
-}
-
-.smallcaps {
-    display: inline;
-    font-variant: small-caps;
-    font-size: 115%;
 }
 
 #header, #sidebar div, #content {
@@ -119,15 +128,10 @@ a:active, hr {
     color: #eeeeee;
 }
 
-#profile-text:hover, #sidebar a:hover {
-    color: #0399d6;
-    text-decoration: none;
-}
-
 #content {
     float: right;
-    width: 590px;
-    padding: 10px;
+    width: 582px;
+    padding: 8px 16px;
     margin: 16px 0px 16px 0px;
 
     text-align: justify;
@@ -135,6 +139,12 @@ a:active, hr {
 
 .about-link {
     text-align: center;
+    color: #eeeeee;
+}
+
+#profile-text:hover, #sidebar a:hover, .about-link:hover {
+    color: #0399d6;
+    text-decoration: none;
 }
 
 .about-list {
@@ -145,7 +155,7 @@ a:active, hr {
     width: 100%;
     border-collapse: collapse;
 
-    font-size: 11pt;
+    font-size: 90%;
     text-align: center;
     background-color: #111111;
 }
@@ -170,10 +180,6 @@ a:active, hr {
     margin: 10px 0px 0px 0px;
 }
 
-#blog-list dd {
-    margin: 8px 0px 0px 0px;
-}
-
-#changelog dd {
-    margin: 0px;
+#blog-list dd, #changelog dd {
+    margin: 0px 0px 0px 0px;
 }
