@@ -1,30 +1,20 @@
 @font-face {
-    font-family: 'Dustismo';
-    font-weight: normal;
+    font-family: 'RecursiveSans';
+    font-weight: 300;
     font-style: normal;
-    unicode-range: U+0-2F, U+3A-10FFFF;
-    src: url(/static/font/Dustismo-Regular.woff2);
+    src: url(/static/font/RecursiveSansLnrSt-Light.woff2);
 }
 @font-face {
-    font-family: 'Dustismo';
-    font-weight: bold;
+    font-family: 'RecursiveSans';
+    font-weight: 700;
     font-style: normal;
-    unicode-range: U+0-2F, U+3A-10FFFF;
-    src: url(/static/font/Dustismo-Bold.woff2);
+    src: url(/static/font/RecursiveSansLnrSt-Bold.woff2);
 }
 @font-face {
-    font-family: 'Dustismo';
-    font-weight: normal;
-    font-style: italic;
-    unicode-range: U+0-2F, U+3A-10FFFF;
-    src: url(/static/font/Dustismo-Italic.woff2);
-}
-@font-face {
-    font-family: 'Dustismo';
-    font-weight: bold;
-    font-style: italic;
-    unicode-range: U+0-2F, U+3A-10FFFF;
-    src: url(/static/font/Dustismo-Bold-Italic.woff2);
+    font-family: 'RecursiveMono';
+    font-weight: 300;
+    font-style: normal;
+    src: url(/static/font/RecursiveMonoLnrSt-Light.woff2);
 }
 
 .smallcaps {
@@ -35,12 +25,12 @@
 
 .monospace {
     display: inline;
-    font-family: monospace;
+    font-family: 'RecursiveMono', monospace;
 }
 
 html {
-    font-family: 'Dustismo', sans-serif;
-    font-size: 13pt;
+    font-family: 'RecursiveSans', sans-serif;
+    font-size: 14px;
     background-color: #111111;
     color: #eeeeee;
 }
@@ -155,7 +145,7 @@ a:active, hr {
     width: 100%;
     border-collapse: collapse;
 
-    font-size: 90%;
+    font-size: 95%;
     text-align: center;
     background-color: #111111;
 }
