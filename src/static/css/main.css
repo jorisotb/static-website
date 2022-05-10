@@ -1,20 +1,10 @@
 @font-face {
     font-family: 'RecursiveSans';
-    font-weight: 300;
-    font-style: normal;
-    src: url(/static/font/RecursiveSansLnrSt-Light.woff2);
-}
-@font-face {
-    font-family: 'RecursiveSans';
-    font-weight: 700;
-    font-style: normal;
-    src: url(/static/font/RecursiveSansLnrSt-Bold.woff2);
+    src: url(/static/font/RecursiveSans-VarWeight.woff2);
 }
 @font-face {
     font-family: 'RecursiveMono';
-    font-weight: 300;
-    font-style: normal;
-    src: url(/static/font/RecursiveMonoLnrSt-Light.woff2);
+    src: url(/static/font/RecursiveMono.woff2);
 }
 
 .smallcaps {
@@ -30,6 +20,7 @@
 
 html {
     font-family: 'RecursiveSans', sans-serif;
+    font-weight: 350;
     font-size: 14px;
     background-color: #111111;
     color: #eeeeee;
