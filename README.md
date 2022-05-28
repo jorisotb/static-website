@@ -43,11 +43,16 @@ The generated blog posts are automatically linked using the following statements
 
 The `--disable-blog` option also disables linking.
 
+## Newsfeed
+When running the script, a `feed.atom` file is generated in the output directory. The contents of this file can be adjusted by changing the `atom_header`, `atom_entry`, and `atom_footer` strings at the top of `include_htm.py`, and the `do_atomfeed` function. Only the generation of the Atom file is handled by the script, you will need to add a link to it manually.
+
+This functionality can be disabled by adding `--disable-feed` to the execution.
+
 ### Todo:
   * [x] add generation of blog posts
   * [x] add automatic linking to blog posts
   * [x] add cmd flags
   * [x] add support for different directory structures
   * [x] add blog post sorting options (posted date/edited date)
-  * [ ] rss/atom feed support
+  * [x] rss/atom feed support
   * [ ] support for different file types
